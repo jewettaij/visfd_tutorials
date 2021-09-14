@@ -104,13 +104,3 @@ segmentation.  Segmenting one cell is relatively quick and straightforward
 and can easily be done in a few hours or less.  However these manual results
 are arguably more subjective and potentially less accurate.
 
-
-## Rant
-
-It's 2021.  I *hate* entering VISFD commands into the BASH terminal.
-I would love to write a python interface to VISFD.
-I would love to provide a graphical interface to VISFD.
-But it's not clear if it would be worth the effort.
-So far, I am not aware of anyone who has used these tools.
-Please let me know if there is actually interest and/or support
-for developing this kind of software.
