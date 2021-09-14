@@ -1,0 +1,3 @@
+I will add at least one example demonstrating how to segment a Cryo-EM
+tomogram (a.k.a. ECT) of a mature HIV-1 virion.
+-Andrew 2021-9-13
