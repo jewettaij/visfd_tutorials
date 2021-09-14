@@ -147,26 +147,6 @@ echo "(618 22 88)"   >> links_membrane.txt  # outer membrane
 # images are probably down-sampled, you will need to multiply the X,Y,Z
 # coordinates by a factor of 2 or 3 to compensate if you do that.
 
-# Potential problem:
-# In order to create a closed surface, we also need to know the orientation
-# of each membrane fragment in each surface.  The "filter_mrc" program attempts
-# to infer the orientations automatically.  But sometimes "filter_mrc" gets
-# confused.  If this happens, the "PoissonRecon" software (we will use later
-# to close the holes in the surface) will generate a completely non-sensical
-# shape (turned inside-out).
-#
-# Solution:
-# If this happens you can add a fourth column to each line in the
-# "links_membrane.txt" file containing the number 1 or -1.  Append either
-# 1 or -1 depending on whether or not the membrane fragment at that location
-# is oriented (approximately) in the same or opposite direction relative to
-# the membrane at the location indicated on the previous line in the file.
-# Try using different combinations of 1 and -1 until the results you get
-# from "PoissonRecon" make sense.  For more details, see the "filter_mrc"
-# documentation describing the "-must-link" argument.
-#
-# Fortunately, this is usually not necessary.  In this example, we
-# did not have to worry about this issue, so that file contains only 3 columns.
 
 
 
