@@ -108,6 +108,9 @@ filter_mrc -in orig_crop.rec \
 # If we used a reasonable guess for the "-minima-threshold", then thin hollow
 # shells should surround all of the fiducial markers.
 # If not, then we have to go back and adjust this "-minima-threshold" parameter.
+# (Useful trick: Clicking on one of the voxels in the thin shells and
+# pressing the "F" key will print out the "score" for that blob.)
+#
 # It's okay if we also detect other dark objects in the image which are not
 # fiducial markers (such as ice contamination or carbon films), as long as they
 # are outside the cell and you don't mind excluding them from consideration
