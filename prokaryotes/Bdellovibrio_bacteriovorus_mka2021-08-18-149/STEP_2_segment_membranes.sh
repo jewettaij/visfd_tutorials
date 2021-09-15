@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
 
-# Voxel Width: In these instructions, it is assumed that the voxel width
-#              is 18.08 Angstroms.  If not, replace this number everywhere.
-#
-# Terminology: I use the phrase "3-D image" and "tomogram" interchangeably.
-#
+
+# WARNING: In these instructions, it is assumed that the voxel width
+#          is 18.08 Angstroms.  If not, replace this number everywhere.
+
+
 
 
 #   ---- Goal: Segment the inner membrane of the cell and its contents ----
+#
+# Terminology: I use the phrase "3-D image" and "tomogram" interchangeably.
 #
 # When detecting the features we care about inside a cell, it will makes our
 # life much easier if we can ignore the region outside the cell.

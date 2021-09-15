@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
 
-# Voxel Width: In these instructions, it is assumed that the voxel width
-#              is 18.08 Angstroms.  If not, replace this number everywhere.
-#
-# Terminology: I use the phrase "3-D image" and "tomogram" interchangeably.
-#
+
+# WARNING: In these instructions, it is assumed that the voxel width
+#          is 18.08 Angstroms.  If not, replace this number everywhere.
+
+
 
 
 # ---- Goal: Clean up the 3-D image before analysis ----
+#
+# Terminology: I use the phrase "3-D image" and "tomogram" interchangeably.
 #
 # If the tomogram contains extremely dark objects, such as gold fiducial
 # beads or ice contamination, then the first step is to remove this debris

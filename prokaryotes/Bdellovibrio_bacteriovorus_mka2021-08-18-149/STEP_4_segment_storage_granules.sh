@@ -1,10 +1,13 @@
+#!/usr/bin/env bash
 
 
+
+# ----- Goal -----
 # Find the locations and diameters of all of the storage granules in the cell.
 #
 # These objects are difficult to detect because they have similar brightness
 # compared to to the nearby surrounding cytoplasm (and nearby nucleoid).
-# Since they are difficult to detect, I do it manually.  Assuming they
+# Since they are difficult to detect, I segment them manually.  Assuming they
 # are spherical, I use 3dmod (IMOD) to measure the center and size of
 # each spherical storage granule.  Open the original image in 3dmod and click
 # on the center of each spherical blob and press the F key.  (The coordinates
