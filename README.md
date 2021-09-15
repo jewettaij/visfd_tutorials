@@ -29,7 +29,7 @@ with graphics.
 
 Segmenting an image of a cell or a virus is a multi-step process.
 Typically you begin by segmenting the most obvious features
-(such as the gold fiducial beads, if present, or the cell boundary).
+(such as the gold fiducial beads or the cell boundary).
 Then you proceed to segment other objects which are more difficult to detect.
 The instructions are typically split into multiple files, named
 "STEP_1_...sh", "STEP_2_...sh", "STEP_3_...sh", etc...
