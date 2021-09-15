@@ -49,8 +49,7 @@
 # This corresponds (approximately) to the size of gold-bead fiducial markers
 # located in this image.  These objects are so dark that they confuse the
 # code that detects other objects we do care about like membranes and ribosomes.
-# We detect them now so that we can exclude them from consideration later
-# (when detecting membranes and ribosomes).
+# We detect them now so that we can exclude them from consideration later.
 
 filter_mrc -in orig_crop.rec \
            -w 18.08 \
@@ -71,12 +70,11 @@ filter_mrc -in orig_crop.rec \
            -w 18.08 \
            -discard-blobs fidicial_blob_candidates.txt fiducial_blobs.txt \
            -radial-separation 0.9 \
-           -minima-threshold -300
+           -minima-threshold -300    # <-- blobs with low "score" are omitted
 
 # The critical parameter here is the "-minima-threshold".  We should choose
 # this threshold so that we detect the fiducial markers that we want to ignore
-# later, without also including other features we do care about
-# (such as the cell membrane or the ribosomes inside the cell).
+# later, without also including other features we do care about.
 #
 # To obtain this parameter, open the "fidicial_blob_candidates.txt" file that
 # we created in the previous step with a text editor.  This is a huge file
@@ -88,21 +86,12 @@ filter_mrc -in orig_crop.rec \
 # so (the number of gold beads in your image), you will notice a sudden
 # drop-off in the score numbers in the 5th column.  Below that point,
 # all of the remaining blobs (which make up the majority of the file),
-# have very low scores and are probably noise.
+# have low scores and probably do not correspond to gold beads.
 # The score where this drop occurs makes a reasonable first guess to use as a
 # parameter for the "-minima-threshold" argument.
 #
-# In the next step, we discard the blobs whose score (magnitudes) are weaker
-# than this threshold value.  After that, we will generate an image showing
-# where these blobs are (the ones we did not discard).  If we failed to
-# detect the correct number of blobs, we can adjust the "-minima-threshold"
-# parameter.
-
 # Now create an image with the location of each blob "marked" with a
-# hollow spherical shell.  You can open it in IMOD and verify that
-# most (or hopefully all) of the fiducial markers have been detected.
-# (It's fine if other objects are also detected, such as ice contamination,
-# as long as these objects lie outside of the cell.)
+# hollow spherical shell:
 
 filter_mrc -in orig_crop.rec \
            -w 18.08 \
@@ -112,17 +101,19 @@ filter_mrc -in orig_crop.rec \
            -spheres-scale 1.4  # make the spheres 40% larger so we can
                                # see them more easily
 
-# Verify that the threshold was chosen correctly using
+# Verify that the threshold was chosen correctly by viewing the file using
+#
 #   3dmod -S fiducial_blobs.rec
 #
 # If we used a reasonable guess for the "-minima-threshold", then thin hollow
 # shells should surround all of the fiducial markers.
 # If not, then we have to go back and adjust this "-minima-threshold" parameter.
 # It's okay if we also detect other dark objects in the image which are not
-# fiducial markers, as long as you don't mind excluding them from consideration
-# later (when you attempt to detect other things like membranes and ribosomes).
-# If everything looks good, then replace the fiducial_blobs.rec file with
-# one where the blobs are black on a white background.
+# fiducial markers (such as ice contamination or carbon films), as long as they
+# are outside the cell and you don't mind excluding them from consideration
+# later.  If everything looks good, then replace the fiducial_blobs.rec file
+# with one where the blobs are black on a white background.  (We will use
+# that version of the file as an image "mask" later.)
 
 
 filter_mrc -in orig_crop.rec \
