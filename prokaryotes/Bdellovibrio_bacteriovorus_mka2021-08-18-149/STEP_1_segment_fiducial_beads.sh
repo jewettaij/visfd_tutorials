@@ -53,7 +53,7 @@
 
 filter_mrc -in orig_crop.rec \
            -w 18.08 \
-           -blob minima fidicial_blob_candidates.txt 120.0 170.0 1.01
+           -blob minima fiducial_blob_candidates.txt 120.0 170.0 1.01
 
 # (Note: The "-w 18.08" argument specifies the voxel width in Angstroms.)
 #
@@ -68,7 +68,7 @@ filter_mrc -in orig_crop.rec \
 
 filter_mrc -in orig_crop.rec \
            -w 18.08 \
-           -discard-blobs fidicial_blob_candidates.txt fiducial_blobs.txt \
+           -discard-blobs fiducial_blob_candidates.txt fiducial_blobs.txt \
            -radial-separation 0.9 \
            -minima-threshold -300    # <-- blobs with low "score" are omitted
 
@@ -76,7 +76,7 @@ filter_mrc -in orig_crop.rec \
 # this threshold so that we detect the fiducial markers that we want to ignore
 # later, without also including other features we do care about.
 #
-# To obtain this parameter, open the "fidicial_blob_candidates.txt" file that
+# To obtain this parameter, open the "fiducial_blob_candidates.txt" file that
 # we created in the previous step with a text editor.  This is a huge file
 # containing one line per detected blob.  The "score" of each blob is in the
 # final column on the far right.  This file is sorted according to blob score.
