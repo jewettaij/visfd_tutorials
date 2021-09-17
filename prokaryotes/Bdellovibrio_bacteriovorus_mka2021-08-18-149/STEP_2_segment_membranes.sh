@@ -64,7 +64,7 @@ filter_mrc -in orig_crop.rec -w 18.08 \
   -membrane minima 80.0 \
   -tv 5 -tv-angle-exponent 4 -tv-best 0.1 \
   -save-progress temporary_file \
-  -cl -0.5 0.5 #<--Limit the brightness of the output file to 0.5 x std-dev
+  -cl -0.7 0.7 #<--Limit the brightness of the output file to 0.7 x std-dev
                #  (For easier viewing in IMOD. This does not change the result.)
 
 
@@ -75,7 +75,7 @@ filter_mrc -in orig_crop.rec -w 18.08 \
 #  membrane detection (in Angstroms).  It should be approximately equal to the
 #  membrane width but it can be a little bit larger.  Values of 60-85 Angstroms
 #  seem to work well.
-# -The "-cl -0.5 0.5" arguments make it easier to view the "orig_crop_mem80.rec"
+# -The "-cl -0.7 0.7" arguments make it easier to view the "orig_crop_mem80.rec"
 #  we created above in visualizer programs like 3dmod, but has no other effect.
 # -The "-save-progress" argument enables us to save time.  In the future, we
 #   skip the calculation we just ran by using the "-load-progress" argument.
@@ -163,7 +163,7 @@ filter_mrc -in orig_crop.rec \
            -select-cluster 2 \
            -normals-file membrane_inner_pointcloud.ply
 
-# In the previous calculation, we asked "filter_mrc" to generate a PLY
+# In this calculation, we asked "filter_mrc" to generate a PLY
 # file containing the surface geometry of the second-largest surface
 # in the image.  Usually this will be the inner membrane.
 # (The outer membrane is usually the largest surface in the tomogram.)
