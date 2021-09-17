@@ -169,7 +169,7 @@ filter_mrc -in orig_crop.rec \
 # (The outer membrane is usually the largest surface in the tomogram.)
 #
 # All of these parameters make reasonably good defaults for membrane
-# detection EXCEPT the "-connect" parameter ("0.01" in the example).
+# detection EXCEPT the "-connect" parameter ("0.03" in the example).
 # It must be chosen carefully because it will vary from image to image.
 # As of 2021-9-10, strategies for choosing this parameter are discussed here:
 # https://github.com/jewettaij/visfd/blob/master/doc/doc_filter_mrc.md#determining-the--connect-threshold-parameter
