@@ -390,7 +390,7 @@ filter_mrc -in membrane_inner.rec -w 18.08 \
 #  -mask-sphere-subtract  697 169 52  26.1
 #
 # This tells the "filter_mrc" program to ignore voxels lying in a sphere
-# of diameter 38.5 voxels, centered at position 697 169 52.
+# of diameter 26.1 voxels, centered at position 697 169 52.
 # You can supply multiple "-mask-sphere-subtract" arguments to
 # exclude multiple spherical regions.  You can also exclude rectangular
 # regions using the "-mask-rect-subtract" argument.
