@@ -150,10 +150,6 @@ echo "(618 22 88)"   >> links_membrane.txt  # outer membrane
 # coordinates by a factor of 2 or 3 to compensate if you do that.
 
 
-
-
-# Now try to connect the surface fragments together into contiguous membranes.
-
 filter_mrc -in orig_crop.rec \
            -w 18.08 \
            -load-progress temporary_file \
