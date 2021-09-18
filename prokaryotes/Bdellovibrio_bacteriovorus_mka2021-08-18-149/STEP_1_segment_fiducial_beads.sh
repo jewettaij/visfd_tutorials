@@ -95,7 +95,7 @@ filter_mrc -in orig_crop.rec \
 
 filter_mrc -in orig_crop.rec \
            -w 18.08 \
-           -out fiducials_blobs.rec \
+           -out fiducial_blobs.rec \
            -draw-hollow-spheres fiducial_blobs.txt \
            -background-auto -background-scale 0.3 \
            -spheres-scale 1.4  # make the spheres 40% larger so we can

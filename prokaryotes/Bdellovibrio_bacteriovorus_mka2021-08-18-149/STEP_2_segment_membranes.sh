@@ -63,10 +63,7 @@ filter_mrc -in orig_crop.rec -w 18.08 \
   -out orig_crop_mem80.rec \
   -membrane minima 80.0 \
   -tv 5 -tv-angle-exponent 4 -tv-best 0.1 \
-  -save-progress temporary_file \
-  -cl -0.7 0.7 #<--Limit the brightness of the output file to 0.7 x std-dev
-               #  (For easier viewing in IMOD. This does not change the result.)
-
+  -save-progress temporary_file
 
 #     Details:  (Feel free to skip.)
 #
@@ -75,8 +72,6 @@ filter_mrc -in orig_crop.rec -w 18.08 \
 #  membrane detection (in Angstroms).  It should be approximately equal to the
 #  membrane width but it can be a little bit larger.  Values of 60-85 Angstroms
 #  seem to work well.
-# -The "-cl -0.7 0.7" arguments make it easier to view the "orig_crop_mem80.rec"
-#  we created above in visualizer programs like 3dmod, but has no other effect.
 # -The "-save-progress" argument enables us to save time.  In the future, we
 #   skip the calculation we just ran by using the "-load-progress" argument.
 # -We use "-membrane" with the "minima" argument because we are
@@ -103,6 +98,26 @@ filter_mrc -in orig_crop.rec -w 18.08 \
 #
 # Now open the newly created tomogram "orig_crop_mem80.rec"
 # with visualizer software (such as IMOD's "3dmod" program).
+#
+# OPTIONAL:
+# If any of the membranes are faint or difficult to see, then try reducing
+# the brightness of the brightest voxels.  Unfortunately this is hard to do
+# in IMOD/3dmod.  So alternatively, you can create a new 3-D image file
+# ("orig_crop_mem80_cl0.4.rec") whose voxel brightnesses have been clipped.
+#
+# filter_mrc -in orig_crop_mem80.rec \
+#            -w 18.08 \
+#            -mask mask_membranes.rec \
+#            -out orig_crop_mem80_cl0.4.rec \
+#            -cl -0.4 0.4
+#
+# Hopefully the membranes should be clearly visible in the new file.
+# You can try experimenting with the clipping parameter ("0.4").
+# (See the "filter_mrc" documentation concerning the "-cl" argument for details)
+# If the new image is clear, then replace the old file with the new version:
+#
+#  mv -f orig_crop_mem80_cl0.4.rec orig_crop_mem80.rec 
+#
 # Membranes in EM tomograms are often faint or invisible in certain directions.
 # So the membrane detector can usually only detect small disconnected fragments
 # in the membrane surface. You can see these when you view "orig_crop_mem80.rec"
@@ -451,7 +466,7 @@ combine_mrc membrane_inner.rec "*" membrane_outer.rec,1,0  periplasm.rec
 
 # ------ Maintianing a fixed distance between concentric membranes ------
 #
-# A new potential may arise:
+# A new problem may arise:
 #
 # A large portion of the inner and outer membranes are not visible in the
 # original tomogram.  The "SSDRecon" program attempts to infer where
@@ -459,31 +474,25 @@ combine_mrc membrane_inner.rec "*" membrane_outer.rec,1,0  periplasm.rec
 # As a result, there is no way to guarantee that the inner membrane will
 # lie within the outer membrane.
 #
-# Alternate method:
+# You might want to make make sure that the two surfaces never get too
+# close together.  For example, suppose you want to make sure the that
+# the inner membrane (represented by the "membrane_inner.rec" file) is
+# separated from the outer membrane (in "membrane_outer.rec") by
+# *at least* 220 Angstroms.  To do that, use this procedure:
 #
-# To insure that the inner membrane remains a fixed distance away from
-# the outer membrane, it might be easier to segment only one of these
-# membranes (say, the outer membrane, since it is often much easier to see).
-# Then invoke "filter_mrc" with the "-erode 290.0" argument to
-# create a new volume which has been contracted inward approximately 290.0
-# Angstroms (for example):
+# filter_mrc -in membrane_outer.rec \
+#            -w 18.08 \
+#            -out membrane_outer_erode220.rec \
+#            -erode-gauss 220
 #
+# combine_mrc membrane_inner.rec "*" membrane_outer_erode220.rec \
+#             membrane_inner.rec
 #
-# filter_mrc -in membrane_outer.rec -out membrane_inner.rec -erode 290.0
-#
-#
-# Alternatively, if you prefer to start with the inner membrane and expand
-# outward, do this instead:
-#
-#
-# filter_mrc -in membrane_inner.rec -out membrane_outer.rec -dilate 290.0
-#
-#
-# Either way, this will ensure that the inner and outer surfaces are separated
-# by 290.0 Angstroms.  (Note: If "-erode 290.0" or "-dilate 290.0" does not
-# work well, try using "-erode-gauss 290.0" or "-dilate-gauss 290.0" instead.
-# The "-erode-gauss" and "-dilate-gauss" methods not as sensitive to
-# bumps and imperfections on the surface.)
+# (Note: The distance between the inner and outer membranes in
+#  Bdellovibrio bacteriovorus is usually a little bit larger than this.
+#  You can play with this number.)
+
+
 
 
 # Finally, after you are done detecting membranes, it is a good idea to delete
