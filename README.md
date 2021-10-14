@@ -91,7 +91,7 @@ We have had better results with tomograms created using the
 [SIRT](https://doi.org/10.1016/0022-5193(72)90180-4) and
 [SART](https://doi.org/10.1016/0161-7346(84)90008-7) methods.
 Both methods enhances the contrast for large objects in the image,
-(including membranes) the cost of fine (sub-nanometer) details.
+(including membranes), at the cost of fine (sub-nanometer) details.
 Other reconstruction methods which enhance low
 spatial frequencies may also work well.  (For EM tomograms, the use of a
 phase-plate during image collection will also help.)
@@ -138,8 +138,10 @@ compartments like cells and organelles.
 In another example, EMAN2 can be used to enhance the visible ribosomes in an
 image. The resulting image can be processed using VISFD software ("filter_mrc")
 to create a text file that specifies the X,Y,Z coordinates of all of the
-risosomes.)  Since only the ribosomes are present in the image that VISFD sees,
-it is much less likely to be distracted or confused by other features.
+risosomes.)  Since only the ribosomes are (hopefully)
+present in the image that VISFD sees, it is much less
+likely to be distracted or confused by other dark spots
+in the image which are not ribosomes.
 
 
 
