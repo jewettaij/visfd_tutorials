@@ -112,7 +112,7 @@ interested in (eg. membranes, polymers, ribosomes), from other features
 in the image (or noise) that you want to ignore.
 (VSFD can detect these objects too, but with a much higher rate of error.)
 Many of these tools are available in the [EMAN2](https://blake.bcm.edu/emanwiki/EMAN2/Programs/tomoseg)
-software package (documented [here](https://doi.org/10.1038/protex.2017.095)
+software package (documented [here](https://doi.org/10.1038/protex.2017.095)).
 
 ***These methods complement the capabilities of VISFD.***
 
