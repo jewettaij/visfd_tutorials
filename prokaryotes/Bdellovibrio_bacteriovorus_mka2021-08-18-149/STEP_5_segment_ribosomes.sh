@@ -50,6 +50,14 @@
 
 
 
+# Suggestion: Use EMAN2
+#
+# You can use programs like "EMAN2" to generate an image that only shows
+# the voxels that belong to the ribosomes in the image.
+# Any kind of preprocessing you can do the image to enhance the features
+# you want to detect (such as ribosomes), will improve the detection sensitivity
+# and make the following steps easier.  In this tutorial, I did not use EMAN2.
+
 
 
 # ---- Part 1) Creating the mask file we will need ----
@@ -135,7 +143,7 @@ filter_mrc -in orig_crop.rec \
            -dog 0 700.0
 
 # OPTIONAL: Remove extremely dark or extremely bright voxels from the image.
-# In practice, this usually does significantly improve the quality of blob
+# In practice, this usually does not significantly improve the quality of blob
 # detection.  But it doesn't hurt either.
 # (See "filter_mrc" documentation concerning the "-cl" argument for details.)
 

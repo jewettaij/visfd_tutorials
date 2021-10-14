@@ -56,6 +56,18 @@ filter_mrc -in fiducial_blobs.rec -out mask_membranes.rec -thresh2 1 0
 
 
 
+
+# Suggestion: Use EMAN2
+#
+# You can use programs like "EMAN2" to generate an image that only shows
+# the voxels that belong to the surface of the membrane.
+# Any kind of preprocessing you can do the image to enhance the features
+# you want to detect (such as membranes), will improve the detection sensitivity
+# and make the following steps easier.  In this tutorial, I did not use EMAN2.
+
+
+
+
 # --------- Detect all membranes in the image (width ~= 80 Angstroms) --------
 
 filter_mrc -in orig_crop.rec -w 18.08 \

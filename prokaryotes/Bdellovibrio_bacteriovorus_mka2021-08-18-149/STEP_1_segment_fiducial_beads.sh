@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 
-
 # WARNING: In these instructions, it is assumed that the voxel width
 #          is 18.08 Angstroms.  If not, replace this number everywhere.
-
-
-
-
-# ---- Goal: Clean up the 3-D image before analysis ----
 #
 # Terminology: I use the phrase "3-D image" and "tomogram" interchangeably.
+
+
+
+
+
+# ---- Goal: Remove excessively bright or dark objects from the image ----
 #
 # If the tomogram contains extremely dark objects, such as gold fiducial
 # beads or ice contamination, then the first step is to remove this debris
@@ -26,6 +26,8 @@
 #
 #
 # This will create an (empty) "fiducial_blobs.rec" we will use in later steps.
+# In that case, after doing this you can skip this file and follow the
+# instructions in the file named "STEP_2..."
 # 
 #
 # ------------------------------------------
@@ -95,15 +97,15 @@ filter_mrc -in orig_crop.rec \
 
 filter_mrc -in orig_crop.rec \
            -w 18.08 \
-           -out fiducial_blobs.rec \
+           -out fiducials_blobs_annotated.rec \
            -draw-hollow-spheres fiducial_blobs.txt \
-           -background-auto -background-scale 0.3 \
-           -spheres-scale 1.4  # make the spheres 40% larger so we can
+           -background-auto -background-scale 0.2 \
+           -spheres-scale 2.2  # make the spheres 120% larger so we can
                                # see them more easily
 
 # Verify that the threshold was chosen correctly by viewing the file using
 #
-#   3dmod -S fiducial_blobs.rec
+#   3dmod -S fiducial_blobs_anotated.rec
 #
 # If we used a reasonable guess for the "-minima-threshold", then thin hollow
 # shells should surround all of the fiducial markers.
@@ -114,9 +116,10 @@ filter_mrc -in orig_crop.rec \
 # It's okay if we also detect other dark objects in the image which are not
 # fiducial markers (such as ice contamination or carbon films), as long as they
 # are outside the cell and you don't mind excluding them from consideration
-# later.  If everything looks good, then replace the fiducial_blobs.rec file
-# with one where the blobs are black on a white background.  (We will use
-# that version of the file as an image "mask" later.)
+# later.  If everything looks good, then create another 3-D image
+# ("fiducial_blobs.rec") file that displays the blobs as white on a black
+# background.  (We will eventually use that version of the file to help
+# us build an image "mask" later.)
 
 
 filter_mrc -in orig_crop.rec \
@@ -125,7 +128,7 @@ filter_mrc -in orig_crop.rec \
            -draw-spheres fiducial_blobs.txt \
            -foreground 1 \
            -background 0 \
-           -spheres-scale 2.5  # make the spheres 2.5 times as large as the
+           -spheres-scale 3.5  # make the spheres 3.5 times as large as the
                                # gold beads.  I want the spheres to completely
                                # cover up these beads (as well as the bright
                                # halos that tend to surround them).  I want
