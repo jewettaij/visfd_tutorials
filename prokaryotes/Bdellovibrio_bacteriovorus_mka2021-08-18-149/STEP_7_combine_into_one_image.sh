@@ -10,7 +10,7 @@
 #   membrane_outer.rec           <-- voxels inside the outer membrane
 #   membrane_inner.rec           <-- voxels inside the inner membrane
 #   ppb_blobs.rec                <-- voxels inside the polyphostate bodies
-#   storage_granule_blobs.rec    <-- voxels inside the polyphostate bodies
+#   storage_granule_blobs.rec    <-- voxels inside the storage granules
 #   ribosome_blobs.rec           <-- voxels inside ribosome-sized blobs
 #   nucleoid.rec                 <-- voxels inside the nucleoid.
 #

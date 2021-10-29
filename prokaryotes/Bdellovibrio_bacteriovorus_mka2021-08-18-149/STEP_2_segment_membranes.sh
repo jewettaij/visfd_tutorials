@@ -142,40 +142,38 @@ filter_mrc -in orig_crop.rec -w 18.08 \
 # ...then we must manually let our software know which of these small fragments
 # belong to the larger closed membrane surface that we want to segment.
 #
-# So view the original 3-D image file (eg. "orig_crop.rec") using 3dmod.
-# (NOT the new "orig_crop_mem80.rec" file we just created).  Then click on
-# places along the membrane you want to segment, selecting least one point from
-# each likely fragment. (You can see where the fragments are by viewing the
-# lower-resolution image we just created "orig_crop_mem80.rec".)
+# So view the original 3-D image file (eg. "orig_crop_mem80.rec") using 3dmod.
+# Then click on places along the membrane you want to segment, selecting least
+# one point from each likely fragment.
 # After clicking, press the "F" key to print out the XYZ coordinates of
 # that point to 3dmod's control window.  Copy these XYZ coordinates
 # (in units of voxels) to a text file ("links_membrane.txt"), and surround
 # them with parenthesis.  (See example below.)
 # (You can create the "links_membrane.txt" file with a text editor.  However,
-#  here I use the unix command "echo" together with ">" and ">>" redirection
-#  to print those lines of text into the "links_membrane.txt" file.)
+#  here I use the unix command "cat" together with "<<" and ">" redirection
+#  to copy the following lines of text into the "links_membrane.txt" file.)
 
-echo "(259 534 102)"  > links_membrane.txt  # inner membrane
-echo "(152 534 102)" >> links_membrane.txt  # inner membrane
-echo "(237 351 102)" >> links_membrane.txt  # inner membrane
-echo "(629 47 102) " >> links_membrane.txt  # inner membrane
-echo "(629 197 102)" >> links_membrane.txt  # inner membrane
-echo "(440 442 107)" >> links_membrane.txt  # inner membrane
-echo "  # blank line separates different connected surfaces">>links_membrane.txt
-echo "(258 552 107)" >> links_membrane.txt  # outer membrane
-echo "(153 551 107)" >> links_membrane.txt  # outer membrane
-echo "(237 337 107)" >> links_membrane.txt  # outer membrane
-echo "(618 22 88)"   >> links_membrane.txt  # outer membrane
+cat << EOF > links_membrane.txt
+# inner membrane
+# (X, Y, Z)
+(259, 534, 102)
+(152, 534, 102)
+(237, 351, 102)
+(629, 47, 102)
+(629, 197, 102)
+(440, 442, 107)
+# (blank line separates different connected surfaces)
 
-# If you are unfamiliar with the "echo" command then open up the
-# "links_membrane.txt" file with a text editor to see what it looks like.
-#
-# Comment: Alternatively, you could measure the position of membrane
-# fragments from the "orig_crop_mem80.rec" file we just created (or the
-# "membrane_clusters.rec" we will create in the next step).  But since those
-# images are probably down-sampled, you will need to multiply the X,Y,Z
-# coordinates by a factor of 2 or 3 to compensate if you do that.
+# outer membrane
+# (X, Y, Z)
+(258, 552, 107)
+(153, 551, 107)
+(237, 337, 107)
+(618, 22, 88)
+EOF
 
+# Feel free to open up the "links_membrane.txt" file with a text editor
+# to see what it looks like.
 
 filter_mrc -in orig_crop.rec \
            -w 18.08 \
@@ -418,11 +416,6 @@ filter_mrc -in membrane_inner.rec -w 18.08 \
 # exclude multiple spherical regions.  You can also exclude rectangular
 # regions using the "-mask-rect-subtract" argument.
 # See the documentation for the "filter_mrc" program for details.
-#
-# Note: Alternatively, you can measure the XYZ coordinates and distances
-# from the "membrane_clusters.rec" image file we created earlier.
-# But you will probably have to multiply the XYZ coordinates and the
-# diameters by 2 or 3, because that image has probably been downsampled.)
 
 
 # Now try to connect the outer membrane surface fragments together again.

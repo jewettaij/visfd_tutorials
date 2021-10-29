@@ -79,7 +79,7 @@ Weighted back projection
 [WBP](https://doi.org/10.1007/978-0-387-69008-7_9)
 is one of several techniques for creating 3-D images
 from a series of TEM images at different angles.
-Itis popular in the field of Cryo-EM tomography (ECT).
+It is popular in the field of Cryo-EM tomography (ECT).
 High-resolution structural details are often well preserved using this method,
 however larger features such as membranes, ribosomes, and nucleoids
 are often faint and difficult to see.

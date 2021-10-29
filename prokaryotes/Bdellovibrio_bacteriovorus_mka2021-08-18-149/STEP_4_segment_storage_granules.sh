@@ -16,17 +16,21 @@
 # the control window.  Then middle-click on two locations in the image and
 # select the "Edit"->"Point"->"Distance" menu option.  This will measure
 # the distance between the two points you clicked, in voxels.  Then record
-# these numbers in a text file (eg. "storage_granule_blobs.txt").  You can
-# create this text file with a text editor.  However, here we use the
-# "echo" command to save this text to a file.
+# these numbers in a text file (eg. "storage_granule_blobs.txt").
+# (You can create the "storage_granule_blobs.txt" file with a text editor.
+#  However, here I use the unix command "cat" together with "<<" and ">"
+#  redirection to copy lines of text into the "links_membrane.txt" file.)
 
-echo "153 456 119  33.5"   > storage_granule_blobs.txt
-echo "203 465 116  52.4"  >> storage_granule_blobs.txt
-echo "221 421 114  30.0"  >> storage_granule_blobs.txt
-echo "186 420 103  39.3"  >> storage_granule_blobs.txt
-echo "398 361 82  25.7"   >> storage_granule_blobs.txt
-echo "555 133 73  30.4"   >> storage_granule_blobs.txt
-echo "212 430 77  29.5"   >> storage_granule_blobs.txt
+cat << EOF > storage_granule_blobs.txt
+# X   Y  Z   diameter
+153 456 119  33.5
+203 465 116  52.4
+221 421 114  30.0
+186 420 103  39.3
+398 361 82  25.7
+555 133 73  30.4
+212 430 77  29.5
+EOF
 
 filter_mrc -in orig_crop.rec -w 1 \
   -out storage_granule_blobs.rec \
