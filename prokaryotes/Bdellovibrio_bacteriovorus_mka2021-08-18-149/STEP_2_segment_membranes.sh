@@ -142,16 +142,17 @@ filter_mrc -in orig_crop.rec -w 18.08 \
 # ...then we must manually let our software know which of these small fragments
 # belong to the larger closed membrane surface that we want to segment.
 #
-# So view the original 3-D image file (eg. "orig_crop_mem80.rec") using 3dmod.
-# Then click on places along the membrane you want to segment, selecting least
-# one point from each likely fragment.
-# After clicking, press the "F" key to print out the XYZ coordinates of
+# So view the membrane 3-D image file we just created ("orig_crop_mem80.rec")
+# using IMOD/3dmod.  Then click on places along the membrane you want
+# to segment, selecting least one point from each likely fragment.
+# After each click, press the "F" key to print out the XYZ coordinates of
 # that point to 3dmod's control window.  Copy these XYZ coordinates
 # (in units of voxels) to a text file ("links_membrane.txt"), and surround
 # them with parenthesis.  (See example below.)
+#
 # (You can create the "links_membrane.txt" file with a text editor.  However,
 #  here I use the unix command "cat" together with "<<" and ">" redirection
-#  to copy the following lines of text into the "links_membrane.txt" file.)
+#  to copy the following lines of text into the "links_membrane.txt" file.
 
 cat << EOF > links_membrane.txt
 # inner membrane
@@ -162,7 +163,7 @@ cat << EOF > links_membrane.txt
 (629, 47, 102)
 (629, 197, 102)
 (440, 442, 107)
-# (blank line separates different connected surfaces)
+# (Note: Blank lines are used to separate different connected surfaces)
 
 # outer membrane
 # (X, Y, Z)
@@ -172,8 +173,11 @@ cat << EOF > links_membrane.txt
 (618, 22, 88)
 EOF
 
-# Feel free to open up the "links_membrane.txt" file with a text editor
-# to see what it looks like.
+# Feel free to open up the "links_membrane.txt" file with a text editor to see
+# what it looks like.  (Lines beginning with "#" are comments and are ignored.)
+
+# Now use the information in the "links_membrane.txt" file to help
+# filter_mrc connect small membrane patches into a larger membrane.
 
 filter_mrc -in orig_crop.rec \
            -w 18.08 \
@@ -387,16 +391,16 @@ filter_mrc -in membrane_inner.rec -w 18.08 \
 #
 # This membrane has a problem which we need to address beforehand:
 #
-# The cell appears to be pushing against the surface of another cell.
+# The cell appears to be pushing against the surface of another cell membrane.
 # You can see this if you open the "orig_crop.rec" file, and look at the
 # right-hand tip of the cell.  (In Cryo-EM, cells are also frequenly
 # seen touching holes in the thin carbon surfaces they are resting against.)
 # Whenever two objects are touching, there is a danger that the membrane
-# detection software will accidentally try to fuse them together.
-# If you open the "orig_crop_mem80.rec" or "membrane_clusters.rec" image files
+# detection software ("filter_mrc") will accidentally try to fuse them together.
+# If you open the "membrane_clusters.rec" or "orig_crop_mem80.rec" image files
 # that we created earlier, you can see that this has happened.
 #
-# Open the "orig_crop.rec" file using 3dmod and click near the place these
+# Open the "membrane_clusters.rec" using 3dmod and click near the place these
 # two membranes are touching.  Make note of the XYZ coordiates of the point
 # where you clicked.  In this case, I get:
 #    697 169 52
@@ -418,8 +422,8 @@ filter_mrc -in membrane_inner.rec -w 18.08 \
 # See the documentation for the "filter_mrc" program for details.
 
 
-# Now try to connect the outer membrane surface fragments together again.
-# using the "-mask-sphere-subtract" argument.
+# Now try to connect the outer membrane surface fragments together again,
+# (this time using the "-mask-sphere-subtract" argument to ignore bad voxels).
 #
 # We will use "-select-cluster 1" this time, because we want to segment
 # the largest surface.  (Previously we used "-select-cluster 2".)

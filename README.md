@@ -1,3 +1,5 @@
+[![License: CC0-1.0](https://licensebuttons.net/p/mark/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
+
 VISFD tutorials
 =================================================
 This repository contains a collection of examples
