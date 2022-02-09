@@ -232,7 +232,7 @@ filter_mrc -in orig_crop.rec \
 # surface which passes through these points in a reasonable way.
 # "SSDRecon" is distributed along with "PoissonRecon", which is available at:
 #
-# https://github.com/mkazhdan/PoissonRecon
+# https://github.com/jewettaij/PoissonRecon
 #
 # (I first tried using "PoissonRecon", but it failed to produce a single 
 #  closed connected surface.  The "SSDRecon" software performed better
@@ -242,6 +242,10 @@ filter_mrc -in orig_crop.rec \
 SSDRecon --in membrane_inner_pointcloud.ply \
   --out membrane_inner_rough.ply --depth 12 --scale 2.0
 
+# The program might crash, but even if that happens,
+# it may have produced the output file we wanted anyway.
+# So even if it crashes, look for a file named "membrane_inner_rough.ply".
+# 
 # Now see if the reconstruction process worked.
 
 meshlab membrane_inner_rough.ply
