@@ -14,26 +14,25 @@
 #   (For details on blob-detection, see:
 #    https://en.wikipedia.org/wiki/Blob_detection)
 #
-# THIS IS NOT AN OPTIMAL WAY TO DETECT RIBOSOMES.
-# Other template-based methods (such as the "MolMatch" software) probably
-# work much better for detecting molecules with a well known shape.
-# I RECOMMEND USING THAT STRATEGY INSTEAD.
 #
-# Unfortunately, the source code for that "MolMatch" has not been made public,
-# (and some other tools require MatLab).
+# Suggestion: Preprocess the image using a machine-learning based program(EMAN2)
 #
+# The blob-detection strategy we use here is fairly generic and crude.
+# It won't be able to distinguish the ribosomes in the cell from other dark
+# objects of similar size.  But if you choose the "-minima-threshold" parameter
+# carefully, it is usually possible to correctly identify ribosomes
+# at least 70% of the time (in high-quality tomograms such as this one.)
 #
-# -- Limitations / Disclaimer --
-#
-# Unfortunately, the blob-detection strategy we use here is fairly crude.
-# It won't be able to distinguish the ribosomes in the cell from other
-# dark blobs.  Depending on the threshold parameter we use, there will
-# definitely be many false positives (and a few false negatives).
-# But (with enough effort), it's usually possible to correctly identify
-# ribosomes -at least- 70% of the time (in high-quality tomograms)
-# using this strategy.  (If you tinker with the parameters enough,
-# you can often do better.)  Again, if you can find other software desgined
-# for detecting molecules in tomograms, I recommend using that instead.
+# Any kind of processing you can do the image beforehand to enhance the features
+# you want to detect (such as ribosomes), will improve the detection accuracy
+# and make the following steps much easier.
+# Programs like "EMAN2" do a much better job of highlighting
+# the voxels in the image where the ribosomes are located.
+# In this tutorial, I did not use EMAN2.  Instead I ran blob-detection on
+# the original image.  To compensate, I attempted to clean up the image as
+# as much as possible beforehand (such as using a DoG, Gauss, and Dilation
+# filter before running the blob-detection; see below).
+# These steps would not be necessary if I used a program like EMAN2 first.
 
 
 # Strategy:
@@ -47,16 +46,6 @@
 #    are easier to distinguish from each other.  See below.)
 #
 # 3) Then use a blob-detction algorithm to find the dark blobs in the image.
-
-
-
-# Suggestion: Use EMAN2
-#
-# You can use programs like "EMAN2" to generate an image that only shows
-# the voxels that belong to the ribosomes in the image.
-# Any kind of preprocessing you can do the image to enhance the features
-# you want to detect (such as ribosomes), will improve the detection sensitivity
-# and make the following steps easier.  In this tutorial, I did not use EMAN2.
 
 
 

@@ -1,4 +1,3 @@
-[![License: CC0-1.0](https://licensebuttons.net/p/mark/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
 [![DOI](https://zenodo.org/badge/406224574.svg)](https://zenodo.org/badge/latestdoi/406224574)
 
 VISFD tutorials
