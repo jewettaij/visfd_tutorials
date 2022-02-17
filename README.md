@@ -18,7 +18,7 @@ paste the commands into the terminal one by one.
 If there is sufficient interest in this software, I hope to eventually
 replace these tutorials with something more professional.
 
-As of 2021-9-13, I have not yet even added any images or videos.
+As of 2022-2-17, I have not yet even added any images or videos.
 I realize that without pictures, these tutorials are difficult to understand.
 When I have permission to post them, I will update these tutorials
 with graphics.
@@ -52,7 +52,7 @@ those voxels later when searching for the next feature.)*
 This kind of quantitative image is sensitive to the object size.
 So it is important that you run these calculations with the correct voxel width.
 This software will attempt to infer the voxel width (typically in Angstroms)
-from the header meta-data stored in the 3-D image file (REC file).
+from the header meta-data stored in the 3D image file (REC file).
 But if the voxel-width is not correctly stored in the REC file
 (as is the case in many of the Jensen lab tomograms),
 then you must specify it manually using the "-w" argument.
@@ -77,7 +77,7 @@ of manual intervention needed to get clean, well-separated features.
 
 Weighted back projection
 [WBP](https://doi.org/10.1007/978-0-387-69008-7_9)
-is one of several techniques for creating 3-D images
+is one of several techniques for creating 3D images
 from a series of TEM images at different angles.
 It is popular in the field of Cryo-EM tomography (ECT).
 High-resolution structural details are often well preserved using this method,
@@ -122,13 +122,13 @@ tools, a new 3D image (tomogram) can be generated containing only that feature.
 With other distracting objects emoved from the image, the VISFD software
 ("filter_mrc") can focus on measuring the locations of the features you
 care about, and these locations can be used for further analysis and modeling.
-For example, you could use EMAN2 to create a new 3-D volumetric image which
-enhances the membranes membranes in the original image.  In this new image,
+For example, you could use EMAN2 to create a new 3D volumetric image which
+enhances the membranes in the original image.  In this new image,
 the only bright voxels are the ones that lie on the surface of the membranes.
 However EMAN2 cannot yet identify the voxels which lie within a closed
 (or semi-closed) membrane surface.  *This is where VISFD can help.*
-The 3-D positions of these voxels in the membrane can be measured
-using VISFD, and used to generate closed 3-D polyhedral mesh surface using
+The 3D positions of these voxels in the membrane can be measured
+using VISFD, and used to generate closed 3D polyhedral mesh surface using
 [poisson surface reconstruction](https://github.com/mkazhdan/PoissonRecon).
 The voxels inside this closed polyhedron can be segmented using tools
 (such as "voxelize_mesh.py").  In this way, EMAN2, VISFD, and other tools,
@@ -168,20 +168,19 @@ and these are often chosen by trial-and-error.
 You may also have to click on the membrane a couple times
 (to help join disconnected surface fragments together).
 Depending on the resolution and size of the image, this software can be slow.
-(In some cases, membrane and blob detection can take several hours.)
-In addition, a significant amount of effort is often needed to "clean up"
-a 3-D image (tomogram) beforehand.  One often has to remove portions of
-the 3-D image that contain features which confuse the automated detectors,
+(In rare cases, membrane and blob detection can take several hours.)
+In addition, for poor-contrast, noisy, or cluttered 3D images,
+the VISFD/filter_mrc, significant amount of effort may be needed to "clean up"
+a 3D image (tomogram) beforehand.  One may need to remove portions of
+the 3D image that contain features which confuse the automated detectors,
 especially near the edge of the detectable portion of a membrane (where the
 signal-to-noise ratio is poor), and when objects are touching each other.
 (Several examples of this are given in these instructions.)
 
-Hence, in practice, a lot of manual effort is often needed to get results.
-**This is especially true when the image
-contrast is poor and the features in the tomogram are faint or difficult to
-see.**  (This is why processing the image in advance using NAD-filtering,
-EMAN2, or SIRT reconstruction, can save time and effort.)
-And because (as of 2021-9-10), the VISFD software lacks a graphical user
+Hence, in practice, a lot of manual effort can be needed to get results.
+(This is why processing the image in advance using NAD-filtering,
+EMAN2, or SIRT reconstruction, can save a lot of time and effort.)
+And because (as of 2022-2-17), the VISFD software lacks a graphical user
 interface.  So the process of making these manual edits is often laborious.
 The entire process can easily take more than a day to finish.  And if you
 encounter a bug in the software, then it can take even longer to resolve.
@@ -189,10 +188,11 @@ However once you have figured out the protocol and parameters needed to
 segment one cell, segmenting other similar cells will probably be much faster
 because you can re-use many of the parameters and strategies you used in the
 past.  For other species or samples (with thicker membranes, or fainter
-nucleoids, for example), completely different strategies may be necessary.
+nucleoids, for example), different thresholds will be necessary.
 
 By comparison, software like AMIRA is not free and is mostly used for manual
 segmentation.  Segmenting one cell is relatively quick and straightforward
-and can easily be done in a few hours or less.  However these manual results
-are arguably more subjective and potentially less accurate.
+and can easily be done in a few hours or less for bacterial tomograms.
+However these manual results are arguably more subjective and potentially
+less accurate.
 
