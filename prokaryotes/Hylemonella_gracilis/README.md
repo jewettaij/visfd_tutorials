@@ -48,11 +48,13 @@ membranes directly.  For other tomograms, additional processing may be needed to
 clean up or enhance the image beforehand.)*
 
 ## STEP_5
-Many bacterial tomograms contain poly-phosphate bodies (PPB), which usually
-appear as large dark spherical blobs.  They can usually be detected
-automatically by "filter_mrc".  But in this example, there was only one tiny
-PPB and "filter_mrc" was confused it with the ribosomes because they were
-similar in size.  So instead I provided instructions how to segment it manually.
+Many bacterial tomograms contain poly-phosphate-bodies (PPBs), which usually
+appear as large dark spherical blobs in the tomogram.  They can usually be
+detected and segmented automatically by "filter_mrc" using the standard
+"blob detection" method.  But in this example, there was only one tiny
+PPB in the tomogram.  The "filter_mrc" program was confused it with the
+ribosomes in the cell because they are both similar in size.
+So instead I provided instructions how to segment this small PPB manually.
 
 ## STEP_6
 Many bacterial tomograms also contain storage granules.  However this one
@@ -65,8 +67,9 @@ Here I attempt to segment the ribosomes in the cell using a method called
 "blob detection".  This method does not work very well for ribosomes.
 As a result, several extra steps were needed to try and clean up the image
 beforehand.  I attempted to explain how to do this.
-However in future examples, I suggest preprocessing the image using
-software like EMAN2 which does a better job at detecting ribosomes in the cell.
+However I suggest that users preprocess the image using software like EMAN2
+beforehand which does a better job at detecting and enhancing ribosomes
+/in the cell.
 
 ## STEP_8
 Here I attempt to segment the nucleoid of the cell using a simple strategy
