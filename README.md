@@ -8,8 +8,6 @@ and other features inside cells using
 [VISFD](https://github.com/jewettaij/visfd)
 and other open-source tools.
 
-***(As of 2021-9-13, only one example has been added so far. -Andrew)***
-
 
 ## STATUS: Rough draft
 
