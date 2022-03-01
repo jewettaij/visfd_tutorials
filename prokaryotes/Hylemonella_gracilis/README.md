@@ -52,13 +52,13 @@ Many bacterial tomograms contain poly-phosphate-bodies (PPBs), which usually
 appear as large dark spherical blobs in the tomogram.  They can usually be
 detected and segmented automatically by "filter_mrc" using the standard
 "blob detection" method.  But in this example, there was only one tiny
-PPB in the tomogram.  The "filter_mrc" program was confused it with the
+PPB in the tomogram.  The "filter_mrc" program confused it with the
 ribosomes in the cell because they are both similar in size.
 So instead I provided instructions how to segment this small PPB manually.
 
 ## STEP_6
-Many bacterial tomograms also contain storage granules.  However this one
-didn't.  So I provided instructions how to create a blank 3D image.
+Many bacterial tomograms also contain storage granules.  However this tomogram
+did not.  So I provided instructions how to create a blank 3D image.
 *(This blank 3D image lets the "filter_mrc" segmentation software know
 that there were no storage granules present in this tomogram.)*
 
@@ -69,7 +69,7 @@ As a result, several extra steps were needed to try and clean up the image
 beforehand.  I attempted to explain how to do this.
 However I suggest that users preprocess the image using software like EMAN2
 beforehand which does a better job at detecting and enhancing ribosomes
-/in the cell.
+in the cell.
 
 ## STEP_8
 Here I attempt to segment the nucleoid of the cell using a simple strategy
