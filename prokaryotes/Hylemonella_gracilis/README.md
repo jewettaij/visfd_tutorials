@@ -1,11 +1,8 @@
 Hylemonella gracilis example
 ============================
 
-<img src="./images/orig_crop_XZ_view_XY_view_LR.jpg" title="original tomogram slized in the XZ and XY directions" height=240>
-<img src="../../images/rightarrow.svg" height=30>
-<img src="./images/membrane_tilt_inner+outer+poincloud_clipped_mesh_LR.jpg" title="interpolated polygon meshes. detected membranes are dark blue and green" height=255>
-<img src="../../images/rightarrow.svg" height=30>
-<img src="./images/segmentation_occ_bbg_LR.jpg" title="complete segmentation" height=240>
+<img src="./images/orig_crop_XZ_view_XY_view_LR.jpg" title="original tomogram slized in the XZ and XY directions" height=240>  <img src="../../images/rightarrow.svg" height=30>  <img src="./images/membrane_tilt_inner+outer+poincloud_clipped_mesh_LR.jpg" title="interpolated polygon meshes. detected membranes are dark blue and green" height=255>  <img src="../../images/rightarrow.svg" height=30>  <img src="./images/segmentation_occ_bbg_LR.jpg" title="complete segmentation" height=240>
+
 
 This directory contains instructions for segmenting a relatively simple tomogram
 of Hylemonella gracilis.  This species of bacteria is quite thin, an this
