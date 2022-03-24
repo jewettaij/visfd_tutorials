@@ -1,6 +1,12 @@
 Hylemonella gracilis example
 ============================
 
+![original tomogram slized in the XZ and XY directions](./images/orig_crop_XZ_view_XY_view_LR.jpg)
+![](../../images/rightarrow.svg)
+![interpolated polygon meshes. detected membranes are dark blue](./images/membrane_tilt_inner+outer+poincloud_clipped_mesh_LR.jpg)
+![](../../images/rightarrow.svg)
+![complete segmentation](./images/segmentation_occ_bbg_LR.jpg)
+
 This directory contains instructions for segmenting a relatively simple tomogram
 of Hylemonella gracilis.  This species of bacteria is quite thin, an this
 makes it possible to obtain high quality tomograms with a high ratio
@@ -28,6 +34,8 @@ I provide instructions where to find the tomogram we will use in this example,
 and how to crop it to a reasonable size.  (Full size tomograms
 are hard to work with.)
 
+![original tomogram slized in the XZ and XY directions](./images/orig_crop_XZ_view_XY_view_LR.jpg)
+
 ## STEP_2
 Some users prefer to clean up the source tomogram using NAD filtering.
 This is optional.  The instructions in STEP_1 explain how to do that
@@ -46,6 +54,8 @@ For this tomogram, this includes the inner and outer membrane of the bacteria.
 *(In this nice and clean tomogram, it is relatively easy to detect the
 membranes directly.  For other tomograms, additional processing may be needed to
 clean up or enhance the image beforehand.)*
+
+![interpolated polygon meshes. detected membranes are dark blue](./images/membrane_tilt_inner+outer+poincloud_clipped_mesh_LR.jpg)
 
 ## STEP_5
 Many bacterial tomograms contain poly-phosphate-bodies (PPBs), which usually
@@ -83,3 +93,4 @@ in STEPS 3-8, into a single 3D image file.  In that file, the brightness
 of each voxel indicates which kind of region the voxel belongs to:
 (eg. periplasm, cytoplasm, PPB, ribosomes, nucleoid...).
 
+![complete segmentation](./images/segmentation_occ_bbg_LR.jpg)
