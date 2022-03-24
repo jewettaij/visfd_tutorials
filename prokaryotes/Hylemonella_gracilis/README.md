@@ -1,11 +1,11 @@
 Hylemonella gracilis example
 ============================
 
-![original tomogram slized in the XZ and XY directions](./images/orig_crop_XZ_view_XY_view_LR.jpg)
-![](../../images/rightarrow.svg)
-![interpolated polygon meshes. detected membranes are dark blue](./images/membrane_tilt_inner+outer+poincloud_clipped_mesh_LR.jpg)
-![](../../images/rightarrow.svg)
-![complete segmentation](./images/segmentation_occ_bbg_LR.jpg)
+<img src="./images/orig_crop_XZ_view_XY_view_LR.jpg" title="original tomogram slized in the XZ and XY directions" height=240>
+<img src="../../images/rightarrow.svg" height=30>
+<img src="./images/membrane_tilt_inner+outer+poincloud_clipped_mesh_LR.jpg" title="interpolated polygon meshes. detected membranes are dark blue and green" height=255>
+<img src="../../images/rightarrow.svg" height=30>
+<img src="./images/segmentation_occ_bbg_LR.jpg" title="complete segmentation" height=240>
 
 This directory contains instructions for segmenting a relatively simple tomogram
 of Hylemonella gracilis.  This species of bacteria is quite thin, an this
@@ -13,6 +13,7 @@ makes it possible to obtain high quality tomograms with a high ratio
 of signal-to-noise.  Unlike many bacterial tomograms, in this species
 it is normal to be able to see ribosomes and nucleoids and other interior
 features inside the cell which are difficult to see in thicker specimens.
+
 
 ### (Terminology: "3D image")
 
