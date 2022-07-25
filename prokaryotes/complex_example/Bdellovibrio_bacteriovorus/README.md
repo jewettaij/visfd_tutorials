@@ -6,7 +6,7 @@ Multiple concentric membranes containing Bdelloplasts
 This is a complex example demonstrating how to segment tomograms
 of Bdellovibrio bacteriovorus cells invading a host cell.
 
-***I recommend starting with the Hylemonella gracilis example instead.***
+#### I recommend starting with the [Hylemonella gracilis example](https://github.com/jewettaij/visfd_tutorials/tree/main/prokaryotes/Hylemonella_gracilis) instead.
 
 As of 2022-7-25, the protocol used here is not yet robust enough
 to work automatically without some input from the user.
